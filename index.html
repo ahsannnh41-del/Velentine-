@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>❤️</title>
+<title>❤️ My Valentine ❤️</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -23,10 +22,10 @@ justify-content:center;
 align-items:center;
 overflow:hidden;
 color:white;
+position:relative;
 }
 
 /* Floating hearts */
-
 .heart{
 position:absolute;
 bottom:-20px;
@@ -46,7 +45,7 @@ z-index:2;
 }
 
 video{
-width:280px;
+width:300px;
 border-radius:20px;
 box-shadow:0 10px 40px rgba(0,0,0,.4);
 margin-bottom:20px;
@@ -57,42 +56,51 @@ font-size:28px;
 margin-bottom:10px;
 }
 
+/* Buttons container */
 .buttons{
-display:flex;
-gap:20px;
-justify-content:center;
-margin-top:20px;
+position:relative;
+width:100%;
+height:80px;
+margin:auto;
 }
 
-button{
+/* YES Button */
+#yes{
+position:relative;
+z-index:2;
+padding:16px 40px;
+font-size:22px;
 border:none;
-padding:12px 26px;
-font-size:18px;
 border-radius:14px;
 cursor:pointer;
-transition:.25s;
-}
-
-#yes{
 background:white;
 color:#ff2e63;
 font-weight:bold;
+transition:.25s;
 }
 
 #yes:hover{
 transform:scale(1.1);
 }
 
+/* NO Button */
 #no{
+position:fixed;   /* so it can move anywhere */
+padding:12px 20px;
+font-size:16px;
+border:none;
+border-radius:12px;
+cursor:pointer;
 background:#222;
 color:white;
-position:absolute;
 }
 
+/* THANKS message */
 #thanks{
 display:none;
 font-size:30px;
 font-weight:bold;
+margin-top:20px;
 animation:pop .6s ease;
 }
 
@@ -100,7 +108,6 @@ animation:pop .6s ease;
 0%{transform:scale(0);}
 100%{transform:scale(1);}
 }
-
 </style>
 </head>
 <body>
@@ -122,9 +129,7 @@ animation:pop .6s ease;
 
 </div>
 
-
 <script>
-
 // Floating hearts generator
 setInterval(()=>{
 let heart=document.createElement("div");
@@ -143,29 +148,25 @@ heart.remove();
 },300);
 
 
-// NO button run away 😈
-
-const no=document.getElementById("no");
-
-no.addEventListener("touchstart",moveButton);
-no.addEventListener("mouseover",moveButton);
+// NO button run away
+const no = document.getElementById("no");
 
 function moveButton(){
-
-let x=Math.random()*(window.innerWidth-100);
-let y=Math.random()*(window.innerHeight-50);
-
-no.style.left=x+"px";
-no.style.top=y+"px";
-
+let padding = 80; // screen edges se gap
+let x = Math.random() * (window.innerWidth - padding);
+let y = Math.random() * (window.innerHeight - padding);
+no.style.left = x + "px";
+no.style.top = y + "px";
 }
+
+no.addEventListener("mouseover", moveButton);
+no.addEventListener("touchstart", moveButton);
 
 
 // YES click
-const yes=document.getElementById("yes");
+const yes = document.getElementById("yes");
 
-yes.addEventListener("click",()=>{
-
+yes.addEventListener("click", ()=>{
 document.getElementById("video").src="yes.mp4";
 document.getElementById("video").loop=false;
 
@@ -174,7 +175,6 @@ yes.style.display="none";
 no.style.display="none";
 
 document.getElementById("thanks").style.display="block";
-
 });
 
 </script>
